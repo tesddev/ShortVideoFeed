@@ -29,20 +29,28 @@
 		638CCD762F311808002D1962 /* ShortVideoFeedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShortVideoFeedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		638CCDB12F312747002D1962 /* Exceptions for "ShortVideoFeed" folder in "ShortVideoFeed" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 638CCD5E2F311806002D1962 /* ShortVideoFeed */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		638CCD612F311806002D1962 /* ShortVideoFeed */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				638CCDB12F312747002D1962 /* Exceptions for "ShortVideoFeed" folder in "ShortVideoFeed" target */,
+			);
 			path = ShortVideoFeed;
 			sourceTree = "<group>";
 		};
 		638CCD6F2F311808002D1962 /* ShortVideoFeedTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = ShortVideoFeedTests;
-			sourceTree = "<group>";
-		};
-		638CCD792F311808002D1962 /* ShortVideoFeedUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ShortVideoFeedUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -77,7 +85,6 @@
 			children = (
 				638CCD612F311806002D1962 /* ShortVideoFeed */,
 				638CCD6F2F311808002D1962 /* ShortVideoFeedTests */,
-				638CCD792F311808002D1962 /* ShortVideoFeedUITests */,
 				638CCD602F311806002D1962 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -152,9 +159,6 @@
 			);
 			dependencies = (
 				638CCD782F311808002D1962 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				638CCD792F311808002D1962 /* ShortVideoFeedUITests */,
 			);
 			name = ShortVideoFeedUITests;
 			packageProductDependencies = (
@@ -400,6 +404,9 @@
 				DEVELOPMENT_TEAM = L5KQK28X5U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShortVideoFeed/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need access to save videos to your photo library";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to save videos to your photo library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -428,6 +435,9 @@
 				DEVELOPMENT_TEAM = L5KQK28X5U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShortVideoFeed/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need access to save videos to your photo library";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to save videos to your photo library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
