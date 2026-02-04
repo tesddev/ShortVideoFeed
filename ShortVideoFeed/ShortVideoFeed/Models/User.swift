@@ -9,16 +9,16 @@ import Foundation
 
 // MARK: - User Model
 struct User: Codable, Identifiable {
-    let id: Int
-    let name: String
-    let url: String
+    let id: Int?
+    let name: String?
+    let url: String?
     
     var username: String {
         // Extract username from name or generate from ID
-        return "@" + name.lowercased().replacingOccurrences(of: " ", with: "_")
+        return "@" + (name?.lowercased().replacingOccurrences(of: " ", with: "_") ?? "")
     }
     
     var profileURL: URL? {
-        URL(string: url)
+        URL(string: url ?? "")
     }
 }
