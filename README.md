@@ -18,14 +18,15 @@ A TikTok-style vertical video feed app built with SwiftUI, featuring video playb
    ```
 
 2. **Configure API Key**
-* Open `ShortVideoFeed/Services/PexelsAPIService.swift`
-* Replace `YOUR_PEXELS_API_KEY` with your actual Pexels API key:
-
+* Create a new swift file and add the following code:
 
 ```swift
-private let apiKey = "YOUR_PEXELS_API_KEY"
-
+struct AppConstants {
+    static let apiKey = "YOUR_PEXELS_API_KEY"
+}`
 ```
+
+* Replace `YOUR_PEXELS_API_KEY` with your actual Pexels API key:
 
 
 3. **Open the project**
