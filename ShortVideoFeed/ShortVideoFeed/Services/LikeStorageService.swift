@@ -15,7 +15,7 @@ class LikeStorageService {
     private let likesKey = "video_likes"
     private let userLikesKey = "user_liked_videos"
     
-    private init() {}
+    init() {}
     
     // MARK: - Like Management
     
