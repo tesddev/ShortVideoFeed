@@ -48,6 +48,7 @@ class VideoFeedViewModel: ObservableObject {
             errorMessage = "An unexpected error occurred: \(error.localizedDescription)"
             isLoading = false
         }
+        isLoading = false
     }
     
     // MARK: - Retry Loading
