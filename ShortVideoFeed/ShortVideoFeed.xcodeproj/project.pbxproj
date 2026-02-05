@@ -14,19 +14,11 @@
 			remoteGlobalIDString = 638CCD5E2F311806002D1962;
 			remoteInfo = ShortVideoFeed;
 		};
-		638CCD772F311808002D1962 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 638CCD572F311806002D1962 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 638CCD5E2F311806002D1962;
-			remoteInfo = ShortVideoFeed;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		638CCD5F2F311806002D1962 /* ShortVideoFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShortVideoFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		638CCD6C2F311808002D1962 /* ShortVideoFeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShortVideoFeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		638CCD762F311808002D1962 /* ShortVideoFeedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShortVideoFeedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -70,13 +62,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		638CCD732F311808002D1962 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -94,7 +79,6 @@
 			children = (
 				638CCD5F2F311806002D1962 /* ShortVideoFeed.app */,
 				638CCD6C2F311808002D1962 /* ShortVideoFeedTests.xctest */,
-				638CCD762F311808002D1962 /* ShortVideoFeedUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -147,26 +131,6 @@
 			productReference = 638CCD6C2F311808002D1962 /* ShortVideoFeedTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		638CCD752F311808002D1962 /* ShortVideoFeedUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 638CCD862F311808002D1962 /* Build configuration list for PBXNativeTarget "ShortVideoFeedUITests" */;
-			buildPhases = (
-				638CCD722F311808002D1962 /* Sources */,
-				638CCD732F311808002D1962 /* Frameworks */,
-				638CCD742F311808002D1962 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				638CCD782F311808002D1962 /* PBXTargetDependency */,
-			);
-			name = ShortVideoFeedUITests;
-			packageProductDependencies = (
-			);
-			productName = ShortVideoFeedUITests;
-			productReference = 638CCD762F311808002D1962 /* ShortVideoFeedUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -181,10 +145,6 @@
 						CreatedOnToolsVersion = 16.3;
 					};
 					638CCD6B2F311808002D1962 = {
-						CreatedOnToolsVersion = 16.3;
-						TestTargetID = 638CCD5E2F311806002D1962;
-					};
-					638CCD752F311808002D1962 = {
 						CreatedOnToolsVersion = 16.3;
 						TestTargetID = 638CCD5E2F311806002D1962;
 					};
@@ -206,7 +166,6 @@
 			targets = (
 				638CCD5E2F311806002D1962 /* ShortVideoFeed */,
 				638CCD6B2F311808002D1962 /* ShortVideoFeedTests */,
-				638CCD752F311808002D1962 /* ShortVideoFeedUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -220,13 +179,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		638CCD6A2F311808002D1962 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		638CCD742F311808002D1962 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -250,13 +202,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		638CCD722F311808002D1962 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -264,11 +209,6 @@
 			isa = PBXTargetDependency;
 			target = 638CCD5E2F311806002D1962 /* ShortVideoFeed */;
 			targetProxy = 638CCD6D2F311808002D1962 /* PBXContainerItemProxy */;
-		};
-		638CCD782F311808002D1962 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 638CCD5E2F311806002D1962 /* ShortVideoFeed */;
-			targetProxy = 638CCD772F311808002D1962 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -494,40 +434,6 @@
 			};
 			name = Release;
 		};
-		638CCD872F311808002D1962 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L5KQK28X5U;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tesleemamuda.ShortVideoFeedUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = ShortVideoFeed;
-			};
-			name = Debug;
-		};
-		638CCD882F311808002D1962 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L5KQK28X5U;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tesleemamuda.ShortVideoFeedUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = ShortVideoFeed;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -554,15 +460,6 @@
 			buildConfigurations = (
 				638CCD842F311808002D1962 /* Debug */,
 				638CCD852F311808002D1962 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		638CCD862F311808002D1962 /* Build configuration list for PBXNativeTarget "ShortVideoFeedUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				638CCD872F311808002D1962 /* Debug */,
-				638CCD882F311808002D1962 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

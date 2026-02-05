@@ -34,6 +34,7 @@ struct ProfileView: View {
                 LazyVGrid(columns: columns, spacing: 2) {
                     ForEach(viewModel.userVideos) { video in
                         VideoThumbnailView(video: video)
+                            .contentShape(Rectangle())
                             .onTapGesture {
                                 viewModel.selectVideo(video)
                             }
@@ -46,9 +47,16 @@ struct ProfileView: View {
         .onAppear {
             viewModel.loadProfileData(from: allVideos)
         }
-        .sheet(isPresented: $viewModel.showVideoPlayer) {
+        .fullScreenCover(isPresented: $viewModel.showVideoPlayer, onDismiss: {
+            viewModel.closeVideoPlayer()
+        }) {
             if let selectedVideo = viewModel.selectedVideo {
-                FullScreenVideoPlayer(video: selectedVideo)
+                FullScreenVideoPlayer(
+                    video: selectedVideo,
+                    onDismiss: {
+                        viewModel.closeVideoPlayer()
+                    }
+                )
             }
         }
     }
@@ -172,8 +180,16 @@ struct VideoThumbnailView: View {
 // MARK: - Full Screen Video Player
 struct FullScreenVideoPlayer: View {
     let video: Video
-    @Environment(\.dismiss) var dismiss
+    let onDismiss: () -> Void
+    
     @StateObject private var playerViewModel = VideoPlayerViewModel()
+    @State private var videoId: Int
+    
+    init(video: Video, onDismiss: @escaping () -> Void) {
+        self.video = video
+        self.onDismiss = onDismiss
+        _videoId = State(initialValue: video.id ?? 0)
+    }
     
     var body: some View {
         ZStack {
@@ -182,30 +198,91 @@ struct FullScreenVideoPlayer: View {
             if let player = playerViewModel.player {
                 VideoPlayer(player: player)
                     .ignoresSafeArea()
+                    .id(videoId)
+            } else if playerViewModel.isBuffering {
+                // Loading state
+                VStack(spacing: 16) {
+                    ProgressView()
+                        .scaleEffect(1.5)
+                        .tint(.white)
+                    Text("Loading video...")
+                        .foregroundColor(.white)
+                        .font(.headline)
+                }
+            }
+            
+            // Error state
+            if playerViewModel.hasError {
+                VStack(spacing: 16) {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .font(.system(size: 50))
+                        .foregroundColor(.yellow)
+                    
+                    Text("Failed to load video")
+                        .foregroundColor(.white)
+                        .font(.headline)
+                    
+                    if let errorMessage = playerViewModel.errorMessage {
+                        Text(errorMessage)
+                            .foregroundColor(.white.opacity(0.8))
+                            .font(.caption)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 40)
+                    }
+                    
+                    Button(action: {
+                        setupAndPlay()
+                    }) {
+                        Text("Retry")
+                            .fontWeight(.semibold)
+                            .foregroundColor(.black)
+                            .frame(width: 100, height: 40)
+                            .background(Color.white)
+                            .cornerRadius(20)
+                    }
+                }
             }
             
             // Close button
             VStack {
                 HStack {
                     Spacer()
-                    Button(action: { dismiss() }) {
+                    Button(action: {
+                        playerViewModel.cleanup()
+                        onDismiss()
+                    }) {
                         Image(systemName: "xmark.circle.fill")
                             .font(.system(size: 32))
                             .foregroundColor(.white)
                             .padding()
+                            .background(Color.black.opacity(0.5))
+                            .clipShape(Circle())
                     }
+                    .padding()
                 }
                 Spacer()
             }
         }
         .onAppear {
-            if let videoURL = video.videoURL {
-                playerViewModel.setupPlayer(with: videoURL)
-                playerViewModel.play()
-            }
+            setupAndPlay()
         }
         .onDisappear {
             playerViewModel.cleanup()
+        }
+    }
+    
+    private func setupAndPlay() {
+        guard let videoURL = video.videoURL else {
+            print("❌ No video URL for video ID: \(video.id ?? 0)")
+            return
+        }
+        
+        print("▶️ Setting up video ID: \(video.id ?? 0) with URL: \(videoURL)")
+        playerViewModel.setupPlayer(with: videoURL)
+        
+        // Small delay to ensure player is ready
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            playerViewModel.play()
         }
     }
 }

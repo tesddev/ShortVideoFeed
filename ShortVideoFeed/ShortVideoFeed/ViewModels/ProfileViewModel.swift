@@ -37,13 +37,20 @@ class ProfileViewModel: ObservableObject {
     
     // MARK: - Video Selection
     func selectVideo(_ video: Video) {
-        selectedVideo = video
-        showVideoPlayer = true
+        // Reset first to ensure clean state
+        selectedVideo = nil
+        showVideoPlayer = false
+        
+        // Use a small delay to ensure the view is dismissed and reset
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) { [weak self] in
+            self?.selectedVideo = video
+            self?.showVideoPlayer = true
+        }
     }
     
     func closeVideoPlayer() {
-        showVideoPlayer = false
         selectedVideo = nil
+        showVideoPlayer = false
     }
     
     // MARK: - Stats
