@@ -11,6 +11,7 @@ struct VideoFeedView: View {
     @ObservedObject var viewModel: VideoFeedViewModel
     @State private var selectedUserId: Int?
     @State private var showProfile = false
+    @State private var scrollPosition: Int? = 0
     
     var body: some View {
         ZStack {
@@ -69,33 +70,43 @@ struct VideoFeedView: View {
                         .foregroundColor(.white)
                 }
             } else {
-                // Video feed
-                TabView(selection: $viewModel.currentVideoIndex) {
-                    ForEach(Array(viewModel.videos.enumerated()), id: \.element.id) { index, video in
-                        VideoPlayerView(
-                            video: video,
-                            isCurrentVideo: viewModel.currentVideoIndex == index,
-                            onUsernameTap: {
-                                selectedUserId = video.user?.id ?? 0
-                                showProfile = true
-                            },
-                            onLikeTap: {
-                                _ = viewModel.toggleLike(for: video)
-                            },
-                            getLikeCount: {
-                                viewModel.getLikeCount(for: video)
-                            },
-                            isLiked: {
-                                viewModel.isLiked(video: video)
+                // Video feed with VERTICAL scrolling
+                GeometryReader { geometry in
+                    ScrollView(.vertical, showsIndicators: false) {
+                        LazyVStack(spacing: 0) {
+                            ForEach(Array(viewModel.videos.enumerated()), id: \.element.id) { index, video in
+                                VideoPlayerView(
+                                    video: video,
+                                    isCurrentVideo: scrollPosition == index,
+                                    onUsernameTap: {
+                                        selectedUserId = video.user?.id ?? 0
+                                        showProfile = true
+                                    },
+                                    onLikeTap: {
+                                        _ = viewModel.toggleLike(for: video)
+                                    },
+                                    getLikeCount: {
+                                        viewModel.getLikeCount(for: video)
+                                    },
+                                    isLiked: {
+                                        viewModel.isLiked(video: video)
+                                    }
+                                )
+                                .frame(width: geometry.size.width, height: geometry.size.height)
+                                .id(index)
+                                .containerRelativeFrame([.vertical, .horizontal])
                             }
-                        )
-                        .tag(index)
+                        }
+                        .scrollTargetLayout()
                     }
-                }
-                .tabViewStyle(.page(indexDisplayMode: .never))
-                .ignoresSafeArea()
-                .onChange(of: viewModel.currentVideoIndex) { oldValue, newValue in
-                    viewModel.updateCurrentIndex(newValue)
+                    .scrollTargetBehavior(.paging)
+                    .scrollPosition(id: $scrollPosition)
+                    .ignoresSafeArea()
+                    .onChange(of: scrollPosition) { oldValue, newValue in
+                        if let newValue = newValue {
+                            viewModel.updateCurrentIndex(newValue)
+                        }
+                    }
                 }
             }
         }

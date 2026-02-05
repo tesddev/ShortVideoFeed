@@ -16,7 +16,7 @@ struct VideoOverlayView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            ZStack(alignment: .bottomTrailing) {
+            HStack(alignment: .bottom, spacing: 0) {
                 // Left side - User info and caption
                 VStack(alignment: .leading, spacing: 12) {
                     Spacer()
@@ -41,21 +41,19 @@ struct VideoOverlayView: View {
                     }
                     
                     // Caption (if available)
-                    if ((video.user?.name?.isEmpty) == nil) {
-                        Text(video.user?.name ?? "")
+                    if let caption = video.user?.name, !caption.isEmpty {
+                        Text(caption)
                             .font(.body)
                             .foregroundColor(.white)
                             .lineLimit(2)
                     }
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading, 16)
-                .padding(.bottom, 100)
-                .frame(maxWidth: geometry.size.width * 0.7, alignment: .leading)
+                .padding(.bottom, geometry.safeAreaInsets.bottom + 20)
                 
                 // Right side - Action buttons
                 VStack(spacing: 24) {
-                    Spacer()
-                    
                     // Like button
                     ActionButton(
                         icon: isLiked ? "heart.fill" : "heart",
@@ -81,8 +79,9 @@ struct VideoOverlayView: View {
                     )
                 }
                 .padding(.trailing, 16)
-                .padding(.bottom, 100)
+                .padding(.bottom, geometry.safeAreaInsets.bottom + 20)
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         }
     }
     
