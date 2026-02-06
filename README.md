@@ -23,7 +23,7 @@ A TikTok-style vertical video feed app built with SwiftUI, featuring video playb
 ```swift
 struct AppConstants {
     static let apiKey = "YOUR_PEXELS_API_KEY"
-}`
+}
 ```
 
 * Replace `YOUR_PEXELS_API_KEY` with your actual Pexels API key:
