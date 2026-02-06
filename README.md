@@ -2,6 +2,9 @@
 
 A TikTok-style vertical video feed app built with SwiftUI, featuring video playback, offline support, and user profile management.
 
+### Video Demo
+https://github.com/user-attachments/assets/24284b32-7bb1-4d01-bcbb-d405532c7553
+
 ## 🚀 Setup Steps
 
 ### Prerequisites
